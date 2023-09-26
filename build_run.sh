@@ -1,10 +1,20 @@
 #!/bin/bash
 
 # Clone the GitHub repo
-git clone https://github.com/M-S-Dhanushkumar/my_web_app.git
+#git clone https://github.com/M-S-Dhanushkumar/my_web_app.git
 
 cd my_web_app
 
+BUILD_TIMESTAMP=$( date '+%F_%H:%M:%S' )
+
+echo "Time: $BUILD_TIMESTAMP"
+
+REMOTE=origin
+BRANCH=main
+git fetch
+if [[ "$(git rev-parse $BRANCH)" != "$(git rev-parse "$REMOTE/$BRANCH")" ]]; then
+  # Run your script
+git pull 
 # Build the Docker image
 docker build -t dhanushkumar28/my_web_app:latest .
 
@@ -20,3 +30,6 @@ docker container rm my_web_app_container
 
 # Run the Docker container
 docker run -d -p 80:80 --name my_web_app_container dhanushkumar28/my_web_app:latest
+else
+	echo "No change on $REMOTE/$BRANCH"
+fi
