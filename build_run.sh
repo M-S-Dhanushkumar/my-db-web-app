@@ -3,6 +3,8 @@
 # Clone the GitHub repo
 git clone https://github.com/M-S-Dhanushkumar/my_web_app.git
 
+cd my_web_app
+
 # Build the Docker image
 docker build -t dhanushkumar28/my_web_app:latest .
 
