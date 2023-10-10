@@ -12,6 +12,10 @@ pwd
 REMOTE=origin
 BRANCH=main
 
+docker stop my_web_app_container 
+
+docker container rm my_web_app_container
+
 
 docker build -t "$TAG" -t "$LATEST" --build-arg VERSION="$VERSION" --build-arg BUILD_TIMESTAMP="$BUILD_TIMESTAMP" . 
 
